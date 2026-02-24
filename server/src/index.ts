@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
 
 import initDb from './config/initDb';
 
@@ -36,6 +37,15 @@ app.use('/api/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/seller/stats', statsRoutes);
+
+// Serve static files from the React app
+const clientDistPath = path.join(__dirname, '../../client/dist');
+if (fs.existsSync(clientDistPath)) {
+    app.use(express.static(clientDistPath));
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(clientDistPath, 'index.html'));
+    });
+}
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

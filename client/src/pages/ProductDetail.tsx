@@ -29,7 +29,7 @@ const ProductDetail: React.FC = () => {
     }, [id]);
 
     // @ts-ignore
-    const baseUrl = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : 'http://localhost:5000';
+    const baseUrl = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : '';
 
     if (loading) return <div className="p-10 text-center">Loading...</div>;
     if (!product) return <div className="p-10 text-center">Product not found</div>;
