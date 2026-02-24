@@ -12,11 +12,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     const { addToCart } = useCart();
     const { showToast } = useToast();
 
+    // @ts-ignore
+    const baseUrl = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : 'http://localhost:5000';
+
     return (
         <div className="mobile-card flex flex-col h-full">
             <Link to={`/product/${product.id}`} className="block relative aspect-square overflow-hidden bg-gray-100">
                 <img
-                    src={product.image_url ? `http://localhost:5000${product.image_url}` : 'https://via.placeholder.com/300?text=Product'}
+                    src={product.image_url ? `${baseUrl}${product.image_url}` : 'https://via.placeholder.com/300?text=Product'}
                     alt={product.name}
                     className="w-full h-full object-cover"
                 />

@@ -43,6 +43,8 @@ const ProductsList: React.FC = () => {
         setModalOpen(true);
     };
 
+    const baseUrl = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : 'http://localhost:5000';
+
     return (
         <div className="space-y-4">
             <div className="flex items-center justify-between">
@@ -70,7 +72,7 @@ const ProductsList: React.FC = () => {
                 ) : products.map((product) => (
                     <div key={product.id} className="mobile-card p-3 flex gap-4 items-center">
                         <div className="w-12 h-12 rounded-lg overflow-hidden bg-gray-100 shrink-0">
-                            <img src={`http://localhost:5000${product.image_url}`} alt="" className="w-full h-full object-cover" />
+                            <img src={`${baseUrl}${product.image_url}`} alt="" className="w-full h-full object-cover" />
                         </div>
                         <div className="flex-1 min-w-0">
                             <h4 className="text-sm font-bold text-gray-800 truncate">{product.name}</h4>

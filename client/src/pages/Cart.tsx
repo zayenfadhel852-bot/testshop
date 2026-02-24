@@ -7,6 +7,8 @@ const Cart: React.FC = () => {
     const { cart, removeFromCart, updateQuantity, totalPrice, totalItems } = useCart();
     const navigate = useNavigate();
 
+    const baseUrl = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : 'http://localhost:5000';
+
     if (cart.length === 0) {
         return (
             <div className="flex flex-col items-center justify-center py-20 text-center space-y-4">
@@ -29,7 +31,7 @@ const Cart: React.FC = () => {
                     <div key={item.id} className="mobile-card p-3 flex gap-4">
                         <div className="w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-gray-100">
                             <img
-                                src={item.image_url ? `http://localhost:5000${item.image_url}` : 'https://via.placeholder.com/100'}
+                                src={item.image_url ? `${baseUrl}${item.image_url}` : 'https://via.placeholder.com/100'}
                                 alt={item.name}
                                 className="w-full h-full object-cover"
                             />

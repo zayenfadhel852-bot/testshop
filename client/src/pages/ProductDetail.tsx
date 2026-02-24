@@ -28,6 +28,9 @@ const ProductDetail: React.FC = () => {
         fetchProduct();
     }, [id]);
 
+    // @ts-ignore
+    const baseUrl = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : 'http://localhost:5000';
+
     if (loading) return <div className="p-10 text-center">Loading...</div>;
     if (!product) return <div className="p-10 text-center">Product not found</div>;
 
@@ -41,7 +44,7 @@ const ProductDetail: React.FC = () => {
                     <ChevronLeft className="w-6 h-6" />
                 </button>
                 <img
-                    src={product.image_url ? `http://localhost:5000${product.image_url}` : 'https://via.placeholder.com/600?text=Product'}
+                    src={product.image_url ? `${baseUrl}${product.image_url}` : 'https://via.placeholder.com/600?text=Product'}
                     alt={product.name}
                     className="w-full h-full object-cover"
                 />
