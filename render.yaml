@@ -10,6 +10,8 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: PORT
+        value: 5000
 
   # Frontend Client
   - type: static
@@ -24,7 +26,7 @@ services:
         fromService:
           type: web
           name: miniapp-server
-          property: host
+          property: url
         suffix: /api
     routes:
       - type: rewrite
